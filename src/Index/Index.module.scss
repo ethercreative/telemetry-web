@@ -1,0 +1,35 @@
+@import "../variables";
+
+.hero {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	padding: $spacer;
+}
+
+.inner {
+	@extend .grid, .container;
+	align-items: center;
+
+	> div {
+		grid-column: span 6;
+
+		@media ($md-viewport) {
+			&:last-child {
+				text-align: right;
+			}
+		}
+
+		@media ($md-viewport-down) {
+			grid-column: span 12;
+		}
+	}
+
+	svg {
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		vertical-align: middle;
+	}
+}

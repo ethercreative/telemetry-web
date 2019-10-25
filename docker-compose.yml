@@ -1,0 +1,35 @@
+version: '3'
+services:
+  web:
+    image: nginx:alpine
+    volumes:
+      - ./:/var/www/html/web:delegated
+      - ./.docker/default.conf:/etc/nginx/conf.d/default.conf:delegated
+    working_dir: /var/www/html
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST}
+      - LETSENCRYPT_EMAIL=certs@ethercreative.co.uk
+    links:
+      - node
+    depends_on:
+      - node
+    restart: unless-stopped
+    networks:
+      - default
+      - proxy
+  node:
+    image: node:alpine
+    command: >
+      sh -c "yarn start"
+    volumes:
+      - ./:/usr/src/app:delegated
+    working_dir: /usr/src/app
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+    restart: unless-stopped
+networks:
+  proxy:
+    external:
+      name: proxy

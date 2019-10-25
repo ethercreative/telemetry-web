@@ -1,0 +1,100 @@
+// Colours
+// =========================================================================
+
+$primary: #FFDD00;
+
+$text: #292B2D;
+
+// Sizes
+// =========================================================================
+
+$spacer: 30px;
+
+// Fonts
+// =========================================================================
+
+@font-face {
+	font-family: 'Inter';
+	font-style:  normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("_fonts/Inter-Regular.woff2?v=3.11") format("woff2"),
+	url("_fonts/Inter-Regular.woff?v=3.11") format("woff");
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style:  normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url("_fonts/Inter-Medium.woff2?v=3.11") format("woff2"),
+	url("_fonts/Inter-Medium.woff?v=3.11") format("woff");
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style:  normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("_fonts/Inter-Bold.woff2?v=3.11") format("woff2"),
+	url("_fonts/Inter-Bold.woff?v=3.11") format("woff");
+}
+
+$font: 'Inter';
+
+// Responsive
+// =========================================================================
+
+$xs-min: 34em;
+$sm-min: 48em;
+$md-min: 62em;
+$lg-min: 75em;
+
+$xs-viewport: (min-width: $xs-min);
+$sm-viewport: (min-width: $sm-min);
+$md-viewport: (min-width: $md-min);
+$lg-viewport: (min-width: $lg-min);
+
+$xs-viewport-down: (max-width: $xs-min);
+$sm-viewport-down: (max-width: $sm-min);
+$md-viewport-down: (max-width: $md-min);
+$lg-viewport-down: (max-width: $lg-min);
+
+$container-width: 1400px;
+
+// Classes
+// =========================================================================
+
+.container {
+	width: 100%;
+	max-width: $container-width;
+	margin: auto;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-gap: $spacer;
+
+	@media ($sm-viewport-down) {
+		grid-column-gap: 0;
+	}
+}
+
+// Helpers
+// =========================================================================
+
+@mixin responsiveSize ($minFontSize, $maxFontSize, $minScreenWidth: 400, $maxScreenWidth: 1260) {
+	$fontDiff: $maxFontSize - $minFontSize;
+	$screenDiff: $maxScreenWidth - $minScreenWidth;
+	font-size: #{$maxFontSize}px;
+	font-size: calc(#{$minFontSize}px + (#{$fontDiff}) * (100vw - #{$minScreenWidth}px) / (#{$screenDiff}));
+
+	@media (min-width: #{$maxScreenWidth}px) {
+		font-size: #{$maxFontSize}px;
+	}
+
+	@media (max-width: #{$minScreenWidth}px) {
+		font-size: #{$minFontSize}px;
+	}
+}
