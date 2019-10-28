@@ -1,0 +1,35 @@
+@import "../../variables";
+
+.wrap {
+	position: relative;
+	padding: 83px $spacer 140px;
+	overflow: hidden;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		width: 100vw;
+		height: 83px;
+
+		// FIXME: webpack-dev-server isn't serving this correctly
+		background-image: url(../../_svg/FooterDivider.svg);
+		background-repeat: repeat;
+	}
+
+	//svg {
+	//	position: relative;
+	//	left: 50%;
+	//	width: 100vw;
+	//	min-width: 500px;
+	//	transform: translateX(-50%);
+	//}
+}
+
+.container {
+	@extend .container;
+	margin-top: 130px;
+}
+
