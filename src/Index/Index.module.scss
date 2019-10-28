@@ -6,6 +6,12 @@
 	justify-content: center;
 	min-height: 100vh;
 	padding: $spacer;
+
+	scroll-snap-align: center;
+
+	@media ($md-viewport-down) {
+		scroll-snap-align: start;
+	}
 }
 
 .inner {
@@ -56,5 +62,31 @@
 
 	a {
 		color: #564B00;
+	}
+}
+
+.section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 220px $spacer;
+
+	scroll-snap-align: center;
+
+	@media ($md-viewport-down) {
+		scroll-snap-align: start;
+	}
+
+	.grid > div:first-child {
+		grid-column: span 6;
+
+		@media ($md-viewport-down) {
+			grid-column: span 12;
+		}
+	}
+
+	&.dark {
+		background-color: #F1F1F1;
 	}
 }

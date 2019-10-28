@@ -71,9 +71,18 @@ html {
 body {
 	color: $text;
 	font-family: $font;
-
 	@include responsiveSize(16, 20);
 }
+
+//#root {
+//	height: 100vh;
+//	overflow-y: scroll;
+//	scroll-snap-type: y mandatory;
+//
+//	@media (max-height: 1000px) {
+//		scroll-snap-type: y proximity;
+//	}
+//}
 
 h1 {
 	margin-bottom: $spacer;
@@ -82,9 +91,20 @@ h1 {
 	font-weight: bold;
 }
 
+h2 {
+	margin-bottom: $spacer;
+
+	@include responsiveSize(30, 40);
+	font-weight: bold;
+}
+
 p {
 	@include responsiveSize(16, 20);
 	line-height: 1.6em;
+
+	&:not(:last-child) {
+		margin-bottom: $spacer;
+	}
 }
 
 strong {
