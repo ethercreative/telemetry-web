@@ -32,9 +32,14 @@
 	outline: none;
 
 	.containerOpen & {
-		background-color: #fff;
+		background-color: #fff !important;
 		box-shadow: 0 2px 10px 0 rgba(0,0,0,0.10);
 		border-radius: 5px 5px 0 0;
+	}
+
+	&.small {
+		padding: 14px 14px 14px 54px;
+		background-color: rgba(0,0,0,0.1);
 	}
 
 	&::placeholder {
@@ -69,11 +74,17 @@
 }
 
 .suggestion {
-	display: flex;
-	align-items: center;
-	padding: 10px 20px;
-
 	border-top: 1px solid #E8E8E8;
+
+	a {
+		display: flex;
+		align-items: center;
+		padding: 10px 20px;
+
+		line-height: inherit;
+		text-align: left;
+		text-decoration: none !important;
+	}
 
 	i {
 		display: block;

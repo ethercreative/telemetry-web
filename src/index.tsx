@@ -1,24 +1,10 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Footer from './_components/Footer/Footer';
+import App from './App';
 
-const Index = lazy(() => import('./Index/Index'));
-const View = lazy(() => import('./View/View'));
-
-ReactDOM.render((
-	<BrowserRouter>
-		<Suspense fallback={<p>Loading...</p>}>
-			<Switch>
-				<Route path="/" exact component={Index} />
-				<Route path="/:handle" component={View} />
-			</Switch>
-			<Footer />
-		</Suspense>
-	</BrowserRouter>
-), document.getElementById('root'));
+ReactDOM.render((<App />), document.getElementById('root'));
 
 // @ts-ignore
 if (module.hot) {
