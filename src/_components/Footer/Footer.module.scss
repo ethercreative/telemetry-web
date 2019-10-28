@@ -1,35 +1,59 @@
 @import "../../variables";
+@import "../../index";
 
 .wrap {
 	position: relative;
 	padding: 83px $spacer 140px;
 	overflow: hidden;
 
-	&:before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-
-		width: 100vw;
-		height: 83px;
-
-		// FIXME: webpack-dev-server isn't serving this correctly
-		background-image: url(../../_svg/FooterDivider.svg);
-		background-repeat: repeat;
-	}
-
-	//svg {
-	//	position: relative;
-	//	left: 50%;
+	//&:before {
+	//	content: '';
+	//	position: absolute;
+	//	top: 0;
+	//	left: 0;
+	//
 	//	width: 100vw;
-	//	min-width: 500px;
-	//	transform: translateX(-50%);
+	//	height: 83px;
+	//
+	//	// FIXME: webpack-dev-server isn't serving this correctly
+	//	background-image: url(./../../_svg/FooterDivider.svg);
+	//	background-repeat: repeat;
 	//}
+
+	svg {
+		position: relative;
+		left: 50%;
+		width: 100vw;
+		min-width: 500px;
+		transform: translateX(-50%);
+	}
 }
 
 .container {
 	@extend .container;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
 	margin-top: 130px;
+
+	button {
+		@extend a;
+
+		line-height: 1.6em;
+
+		appearance: none;
+		background: none;
+		border: none;
+		border-radius: 0;
+		cursor: pointer;
+	}
+
+	@media ($sm-viewport-down) {
+		display: block;
+
+		ul {
+			margin-bottom: $spacer;
+		}
+	}
 }
 

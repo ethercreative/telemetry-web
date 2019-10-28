@@ -22,7 +22,7 @@ const Index = () => (
 					<Search />
 					<div className={styles.pill}>
 						Are you a plugin author? <a
-							href="https://github.com/ethercreative/telemetry"
+							href="https://github.com/ethercreative/telemetry/blob/master/README.md"
 							target="_blank"
 							rel="noopener noreferrer"
 						>Add this to your plugin.</a>

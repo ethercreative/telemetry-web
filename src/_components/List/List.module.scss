@@ -1,0 +1,13 @@
+@import "../../variables";
+
+.list {
+	list-style: none;
+
+	li {
+		line-height: 1.6em;
+	}
+
+	li:not(:last-child) {
+		margin-bottom: 5px;
+	}
+}

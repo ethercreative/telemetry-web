@@ -64,9 +64,15 @@ table {
 	}
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	color: $text;
 	font-family: $font;
+
+	@include responsiveSize(16, 20);
 }
 
 h1 {
@@ -79,4 +85,20 @@ h1 {
 p {
 	@include responsiveSize(16, 20);
 	line-height: 1.6em;
+}
+
+strong {
+	font-weight: bold;
+}
+
+a {
+	color: $text;
+	text-decoration: underline;
+
+	&:hover {
+		&,
+		a {
+			text-decoration-style: wavy;
+		}
+	}
 }
