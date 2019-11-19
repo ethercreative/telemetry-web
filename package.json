@@ -6,15 +6,17 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "yarn install && gatsby develop",
     "start": "yarn develop",
-    "serve": "gatsby serve",
+    "serve": "yarn install && gatsby serve",
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "gatsby": "^2.17.11",
     "gatsby-plugin-react-helmet": "^3.1.15",
     "gatsby-plugin-sass": "^2.1.23",
+    "gatsby-source-pg": "^0.1.4",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-autosuggest": "^9.4.3",
