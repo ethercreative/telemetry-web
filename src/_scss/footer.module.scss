@@ -1,5 +1,5 @@
-@import "../../variables";
-@import "../../index";
+@import "variables";
+@import "base";
 
 .wrap {
 	position: relative;
@@ -16,7 +16,7 @@
 	//	height: 83px;
 	//
 	//	// FIXME: webpack-dev-server isn't serving this correctly
-	//	background-image: url(./../../_svg/FooterDivider.svg);
+	//	background-image: url(../_svg/FooterDivider.svg);
 	//	background-repeat: repeat;
 	//}
 
@@ -56,4 +56,3 @@
 		}
 	}
 }
-

@@ -1,21 +1,22 @@
-import React, { ReactElement } from 'react';
-import styles from './Index.module.scss';
-import IndexGraphic from '../_svg/IndexGraphic';
-import Helmet from 'react-helmet';
-import TelemetryIcon from '../_svg/TelemetryIcon';
-import Search from '../_components/Search/Search';
-import IndexDivider from '../_svg/IndexDivider';
-import List from '../_components/List/List';
+import React from 'react';
+import css from '../_scss/index.module.scss';
+import { Helmet } from 'react-helmet';
+import TelemetryIcon from "../_svg/TelemetryIcon";
+import IndexGraphic from "../_svg/IndexGraphic";
+import Search from "../_components/Search";
+import IndexDivider from "../_svg/IndexDivider";
+import List from "../_components/List";
+import Layout from "../_components/Layout";
 
-const Section = ({ children, dark } : { children: ReactElement, dark ?: boolean }) => (
-	<section className={[styles.section, dark ? styles.dark : null].filter(Boolean).join(' ')}>
-		<div className={[styles.container, styles.grid].join(' ')}>
+const Section = ({ children, dark }) => (
+	<section className={[css.section, dark ? css.dark : null].filter(Boolean).join(' ')}>
+		<div className={[css.container, css.grid].join(' ')}>
 			{children}
 		</div>
 	</section>
 );
 
-const Docs = ({ children } : { children: ReactElement | string }) => (
+const Docs = ({ children }) => (
 	<a
 		href="https://github.com/ethercreative/telemetry/blob/master/README.md"
 		target="_blank"
@@ -25,13 +26,13 @@ const Docs = ({ children } : { children: ReactElement | string }) => (
 	</a>
 );
 
-const Index = () => (
-	<>
+export default () => (
+	<Layout>
 		<Helmet>
 			<title>Telemetry</title>
 		</Helmet>
-		<header className={styles.hero}>
-			<div className={styles.inner}>
+		<header className={css.hero}>
+			<div className={css.inner}>
 				<div>
 					{TelemetryIcon}
 					<h1>Telemetry</h1>
@@ -40,7 +41,7 @@ const Index = () => (
 						current installs and allows you to analyse version and
 						edition usage.</p>
 					<Search />
-					<div className={styles.pill}>
+					<div className={css.pill}>
 						Are you a plugin author? <Docs>Add this to your plugin.</Docs>
 					</div>
 				</div>
@@ -102,7 +103,5 @@ const Index = () => (
 				<p>Fancy giving it a whirl? <Docs>Head over to the docs.</Docs></p>
 			</div>
 		</Section>
-	</>
+	</Layout>
 );
-
-export default Index;

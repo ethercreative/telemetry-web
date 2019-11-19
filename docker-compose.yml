@@ -22,7 +22,7 @@ services:
   node:
     image: node:alpine
     command: >
-      sh -c "yarn start"
+      sh -c "yarn serve"
     volumes:
       - ./:/usr/src/app:delegated
     working_dir: /usr/src/app

@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './Header.module.scss';
-import { Link } from 'react-router-dom';
-import TelemetryIcon from '../../_svg/TelemetryIcon';
-import Search from '../Search/Search';
+import styles from '../_scss/Header.module.scss';
+import { Link } from 'gatsby';
+import TelemetryIcon from '../_svg/TelemetryIcon';
+import Search from './Search';
 
-const Header = ({ defaultValue = '' } : { defaultValue ?: string }) => (
+const Header = ({ defaultValue = '' }) => (
 	<header className={styles.header}>
 		<div className={styles.container}>
 			<Link to="/" className={styles.logo}>

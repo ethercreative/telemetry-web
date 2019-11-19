@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styles from './Search.module.scss';
-import SearchIcon from '../../_svg/SearchIcon';
+import styles from '../_scss/search.module.scss';
+import SearchIcon from '../_svg/SearchIcon';
+import { Link, navigate } from 'gatsby';
 import AutoSuggest from 'react-autosuggest';
-import { Link, useHistory } from 'react-router-dom';
 
 const TEMP_suggestions = [
 	{ text: 'Apple', handle: 'apple' },
@@ -12,9 +12,8 @@ const TEMP_suggestions = [
 	{ text: 'Lemon', handle: 'lemon' },
 ];
 
-const Search = ({ defaultValue = '', small = false } : { defaultValue ?: string; small ?: boolean }) => {
-	const history = useHistory()
-		, [value, setValue] = useState<string>(defaultValue);
+export default ({ defaultValue = '', small = false }) => {
+	const [value, setValue] = useState(defaultValue);
 
 	return (
 		<AutoSuggest
@@ -24,7 +23,7 @@ const Search = ({ defaultValue = '', small = false } : { defaultValue ?: string;
 			onSuggestionsClearRequested={() => {}}
 			getSuggestionValue={s => s.text}
 			onSuggestionSelected={(e, { suggestion }) => {
-				history.push(`/${suggestion.handle}`);
+				navigate(`/${suggestion.handle}`);
 			}}
 			renderSuggestion={s => (
 				<Link to={`/${s.handle}`}>
@@ -42,10 +41,12 @@ const Search = ({ defaultValue = '', small = false } : { defaultValue ?: string;
 				value,
 				onChange: (_, { newValue }) => setValue(newValue),
 			}}
-			// @ts-ignore
-			renderInputComponent={props => <label className={styles.label}>{SearchIcon}<input {...props} autoFocus={defaultValue === ''} /></label>}
+			renderInputComponent={props => (
+				<label className={styles.label}>
+					{SearchIcon}
+					<input {...props} autoFocus={defaultValue === ''} />
+				</label>
+			)}
 		/>
 	);
 };
-
-export default Search;

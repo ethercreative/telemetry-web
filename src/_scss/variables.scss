@@ -18,8 +18,8 @@ $spacer: 30px;
 	font-style:  normal;
 	font-weight: 400;
 	font-display: swap;
-	src: url("_fonts/Inter-Regular.woff2?v=3.11") format("woff2"),
-	url("_fonts/Inter-Regular.woff?v=3.11") format("woff");
+	src: url("../_fonts/Inter-Regular.woff2?v=3.11") format("woff2"),
+		 url("../_fonts/Inter-Regular.woff?v=3.11") format("woff");
 }
 
 @font-face {
@@ -27,8 +27,8 @@ $spacer: 30px;
 	font-style:  normal;
 	font-weight: 500;
 	font-display: swap;
-	src: url("_fonts/Inter-Medium.woff2?v=3.11") format("woff2"),
-	url("_fonts/Inter-Medium.woff?v=3.11") format("woff");
+	src: url("../_fonts/Inter-Medium.woff2?v=3.11") format("woff2"),
+		 url("../_fonts/Inter-Medium.woff?v=3.11") format("woff");
 }
 
 @font-face {
@@ -36,8 +36,8 @@ $spacer: 30px;
 	font-style:  normal;
 	font-weight: 700;
 	font-display: swap;
-	src: url("_fonts/Inter-Bold.woff2?v=3.11") format("woff2"),
-	url("_fonts/Inter-Bold.woff?v=3.11") format("woff");
+	src: url("../_fonts/Inter-Bold.woff2?v=3.11") format("woff2"),
+		 url("../_fonts/Inter-Bold.woff?v=3.11") format("woff");
 }
 
 $font: 'Inter';
