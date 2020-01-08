@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{% if title is defined %}
+		<title>{{ title }} - Telemetry</title>
+	{% else %}
+		<title>Telemetry</title>
+	{% endif %}
+	<link rel="stylesheet" href="/assets/css/{{ manifest['style.scss'] }}">
+</head>
+<body>
+
+{% block content %}{% endblock %}
+
+<footer class="footer-wrap">
+	<div class="footer-container">
+		<ul class="list">
+			<li><strong>Telemetry</strong></li>
+			<li><a href="https://github.com/ethercreative/telemetry/blob/master/README.md" target="_blank" rel="noopener noreferrer">For plugin developers</a></li>
+			<li><button id="findPlugin">Find a plugin</button></li>
+			<li><a href="https://github.com/ethercreative/telemetry" target="_blank" rel="noopener noreferrer">On GitHub</a></li>
+		</ul>
+		<a href="https://ethercreative.co.uk">
+			Made with <object>
+				<a href="https://www.youtube.com/watch?v=ussCHoQttyQ" target="_blank" rel="noopener noreferrer">neutrality</a>
+			</object> by ether
+		</a>
+	</div>
+</footer>
+
+<script src="/assets/js/{{ manifest['app.js'] }}"></script>
+</body>
+</html>

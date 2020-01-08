@@ -18,8 +18,8 @@ $spacer: 30px;
 	font-style:  normal;
 	font-weight: 400;
 	font-display: swap;
-	src: url("../_fonts/Inter-Regular.woff2?v=3.11") format("woff2"),
-		 url("../_fonts/Inter-Regular.woff?v=3.11") format("woff");
+	src: url("../fonts/Inter-Regular.woff2?v=3.11") format("woff2"),
+		 url("../fonts/Inter-Regular.woff?v=3.11") format("woff");
 }
 
 @font-face {
@@ -27,8 +27,8 @@ $spacer: 30px;
 	font-style:  normal;
 	font-weight: 500;
 	font-display: swap;
-	src: url("../_fonts/Inter-Medium.woff2?v=3.11") format("woff2"),
-		 url("../_fonts/Inter-Medium.woff?v=3.11") format("woff");
+	src: url("../fonts/Inter-Medium.woff2?v=3.11") format("woff2"),
+		 url("../fonts/Inter-Medium.woff?v=3.11") format("woff");
 }
 
 @font-face {
@@ -36,8 +36,8 @@ $spacer: 30px;
 	font-style:  normal;
 	font-weight: 700;
 	font-display: swap;
-	src: url("../_fonts/Inter-Bold.woff2?v=3.11") format("woff2"),
-		 url("../_fonts/Inter-Bold.woff?v=3.11") format("woff");
+	src: url("../fonts/Inter-Bold.woff2?v=3.11") format("woff2"),
+		 url("../fonts/Inter-Bold.woff?v=3.11") format("woff");
 }
 
 $font: 'Inter';
@@ -50,15 +50,15 @@ $sm-min: 48em;
 $md-min: 62em;
 $lg-min: 75em;
 
-$xs-viewport: (min-width: $xs-min);
-$sm-viewport: (min-width: $sm-min);
-$md-viewport: (min-width: $md-min);
-$lg-viewport: (min-width: $lg-min);
+$xs-viewport: "min-width: " #{$xs-min};
+$sm-viewport: "min-width: " #{$sm-min};
+$md-viewport: "min-width: " #{$md-min};
+$lg-viewport: "min-width: " #{$lg-min};
 
-$xs-viewport-down: (max-width: $xs-min);
-$sm-viewport-down: (max-width: $sm-min);
-$md-viewport-down: (max-width: $md-min);
-$lg-viewport-down: (max-width: $lg-min);
+$xs-viewport-down: "max-width: " #{$xs-min};
+$sm-viewport-down: "max-width: " #{$sm-min};
+$md-viewport-down: "max-width: " #{$md-min};
+$lg-viewport-down: "max-width: " #{$lg-min};
 
 $container-width: 1400px;
 

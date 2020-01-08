@@ -1,6 +1,6 @@
 @import "variables";
 
-.hero {
+.index-hero {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -14,7 +14,7 @@
 	}
 }
 
-.inner {
+.index-inner {
 	@extend .grid, .container;
 	align-items: center;
 
@@ -48,7 +48,7 @@
 	}
 }
 
-.pill {
+.index-pill {
 	display: inline-block;
 	margin-top: 20px;
 	padding: 5px 18px;
@@ -65,7 +65,7 @@
 	}
 }
 
-.section {
+.index-section {
 	display: flex;
 	align-items: center;
 	justify-content: center;
