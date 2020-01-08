@@ -19,7 +19,7 @@ services:
       - postgres
     restart: unless-stopped
   node:
-    image: node:12-alpine
+    image: node:alpine
     command: >
       sh -c "${START_CMD}"
     volumes:
@@ -28,7 +28,7 @@ services:
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST}
     ports:
-      - 8000:8000
+      - 3000:3000
     restart: unless-stopped
   postgres:
     image: postgres:11-alpine
