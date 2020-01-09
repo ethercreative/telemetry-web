@@ -26,6 +26,16 @@
         "assets/fonts": "assets/fonts",
         "assets/svg": "assets/svg"
       }
+    },
+    "critical": {
+      "run": false,
+      "baseUrl": "https://dev.telemetry",
+      "cssUrl": "/assets/css/[style.scss]",
+      "paths": {
+        "index": "/",
+        "_view": "/simplemap",
+        "404": "/404"
+      }
     }
   }
 }

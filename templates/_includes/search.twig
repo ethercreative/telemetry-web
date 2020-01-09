@@ -1,3 +1,35 @@
 {% set small = searchSmall if searchSmall is defined else false %}
 {% set value = searchValue if searchValue is defined else false %}
-<div><strong><code>[TODO: Search{{ ' small' if small }}{{ ' for ' ~ value if value }}]</code></strong></div>
+<div class="search-wrap" id="search">
+	<label class="search-label">
+		<svg width="17" height="18" viewBox="0 0 17 18">
+			<path fill="#292B2D" d="M6.965 14.62c1.483 0 2.851-.49 3.982-1.317l4.152 4.368c.22.22.504.329.799.329.646 0 1.102-.509 1.102-1.167 0-.309-.095-.608-.314-.837l-4.124-4.338a7.483 7.483 0 0 0 1.369-4.348C13.93 3.29 10.804 0 6.965 0 3.135 0 0 3.29 0 7.31c0 4.019 3.136 7.31 6.965 7.31zm0-1.706c-2.926 0-5.34-2.533-5.34-5.604 0-3.072 2.414-5.605 5.34-5.605 2.937 0 5.35 2.533 5.35 5.605 0 3.071-2.413 5.604-5.35 5.604z"/>
+		</svg>
+		<input
+			type="search"
+			placeholder="Search for a plugin..."
+			class="search-input{{ ' small' if small }}"
+			{% if value %}value="{{ value }}"{% endif %}
+		/>
+	</label>
+	<div class="search-suggestions-wrap">
+		<ul>
+			{% for plugin in plugins %}
+				<li
+					class="search-suggestion hidden"
+					data-name="{{ plugin.name }}"
+					data-handle="{{ plugin.handle }}"
+					data-developer="{{ plugin.developer }}"
+				>
+					<a href="/{{ plugin.handle }}">
+						<img src="{{ plugin.icon }}" alt="{{ plugin.name }}">
+						<div>
+							<strong>{{ plugin.name }}</strong>
+							<small>by {{ plugin.developer }}</small>
+						</div>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>

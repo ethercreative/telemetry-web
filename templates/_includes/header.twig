@@ -1,0 +1,12 @@
+<header class="header">
+	<div class="container">
+		<a href="/" class="logo">
+			{% include '_includes/icon.twig' %}
+			Telemetry
+		</a>
+
+		{% set searchSmall = true %}
+		{% set searchValue = plugin.handle if plugin else '' %}
+		{% include '_includes/search.twig' %}
+	</div>
+</header>

@@ -10,6 +10,9 @@
 		<title>Telemetry</title>
 	{% endif %}
 	<link rel="stylesheet" href="/assets/css/{{ manifest['style.scss'] }}">
+	{% if critical is defined %}
+		<style>{% include '_critical/' ~ critical ~ '.css' ignore missing %}</style>
+	{% endif %}
 </head>
 <body>
 
@@ -31,6 +34,7 @@
 	</div>
 </footer>
 
-<script src="/assets/js/{{ manifest['app.js'] }}"></script>
+<script src="/assets/js/{{ manifest['app.js'] }}" defer async></script>
+{% block endBody %}{% endblock %}
 </body>
 </html>

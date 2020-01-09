@@ -1,19 +1,45 @@
 {% extends '_layout.twig' %}
+{% set critical = '_view' %}
 {% set title = plugin.name %}
 
 {% block content %}
 
-	<header class="header">
+	{% include '_includes/header.twig' %}
+
+	<div class="view-header">
 		<div class="container">
-			<a href="/" class="logo">
-				{% include '_includes/icon.twig' %}
-				Telemetry
-			</a>
+			<div class="view-icon">
+				<img src="{{ plugin.icon }}" alt="{{ plugin.name }}">
+				<div>
+					<strong>{{ plugin.name }}</strong>
+					<small>by <a href="{{ plugin.developer_url }}" target="_blank" rel="noopener noreferrer">{{ plugin.developer }}</a></small>
+				</div>
+			</div>
 
-			{% set searchSmall = true %}
-			{% set searchValue = plugin.handle %}
-			{% include '_includes/search.twig' %}
+			<ul class="view-overall">
+				<li>
+					<small>All</small>
+					<strong>{{ stats.overall._all }}</strong>
+				</li>
+				{% for edition in plugin.editions %}
+					<li>
+						<small>{{ edition.name }}</small>
+						<strong>{{ stats[edition.handle] or 'N/A' }}</strong>
+					</li>
+				{% endfor %}
+			</ul>
 		</div>
-	</header>
+	</div>
 
+	<section class="view-chart">
+		<div class="container">
+			<canvas id="month" width="1400px" height="400px"></canvas>
+		</div>
+	</section>
+
+	<pre><code>{{ stats|dump(2) }}</code></pre>
+{% endblock %}
+
+{% block endBody %}
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" async></script>
 {% endblock %}

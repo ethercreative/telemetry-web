@@ -1,0 +1,18 @@
+{% extends '_layout.twig' %}
+{% set critical = '404' %}
+{% set title = 'Plugin not found' %}
+
+{% block content %}
+
+	{% include '_includes/header.twig' %}
+
+	<section class="index-section">
+		<div class="container grid">
+			<div>
+				<h2>Plugin not found!</h2>
+				<p>It doesn't look like we have that plugin in our database!</p>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

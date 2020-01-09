@@ -1,4 +1,5 @@
 {% extends '_layout.twig' %}
+{% set critical = 'index' %}
 
 {% macro docs(text) %}
 	<a
@@ -11,8 +12,6 @@
 {% endmacro %}
 
 {% block content %}
-
-	{{ data|dump }}
 
 	<header class="index-hero">
 		<div class="index-inner">
