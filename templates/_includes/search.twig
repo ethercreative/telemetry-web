@@ -1,0 +1,3 @@
+{% set small = searchSmall if searchSmall is defined else false %}
+{% set value = searchValue if searchValue is defined else false %}
+<div><strong><code>[TODO: Search{{ ' small' if small }}{{ ' for ' ~ value if value }}]</code></strong></div>

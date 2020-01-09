@@ -1,0 +1,19 @@
+{% extends '_layout.twig' %}
+{% set title = plugin.name %}
+
+{% block content %}
+
+	<header class="header">
+		<div class="container">
+			<a href="/" class="logo">
+				{% include '_includes/icon.twig' %}
+				Telemetry
+			</a>
+
+			{% set searchSmall = true %}
+			{% set searchValue = plugin.handle %}
+			{% include '_includes/search.twig' %}
+		</div>
+	</header>
+
+{% endblock %}

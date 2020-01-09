@@ -16,6 +16,8 @@ services:
     depends_on:
       - node
     restart: unless-stopped
+    ports:
+      - 8001:80
   node:
     image: node:alpine
     command: >

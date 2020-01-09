@@ -1,0 +1,36 @@
+@import "variables";
+
+.header {
+	position: relative;
+	z-index: 10;
+
+	display: flex;
+	align-items: center;
+	height: 80px;
+	background-color: $primary;
+	padding: 0 $spacer;
+
+	.container {
+		@extend .container;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		> div:last-child {
+			max-width: 460px;
+			margin: unset;
+		}
+	}
+
+	.logo {
+		text-decoration: none;
+
+		@include responsiveSize(18, 28);
+		font-weight: bold;
+
+		svg {
+			margin-right: 20px;
+			vertical-align: text-top;
+		}
+	}
+}
