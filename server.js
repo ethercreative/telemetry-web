@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express')
-	, nunjucks = require('nunjucks')
+	, Twig = require('twig')
 	, postgres = require('postgres')
 	, fs = require('fs')
 	, querystring = require('querystring')
@@ -13,13 +13,10 @@ const { DB_USER, DB_PASSWORD, DB_DATABASE } = process.env;
 const app = express()
 	, sql = postgres(`postgres://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE}`);
 
-nunjucks.configure('templates', {
-	autoescape: true,
-	express: app
+app.set('twig options', {
+	allow_async: true,
+	strict_variables: false,
 });
-
-app.set('templates','./templates');
-app.set('view engine', 'html');
 app.use(express.static('web'));
 
 // Helpers
@@ -69,7 +66,7 @@ app.get('/:handle', async (req, res) => {
 	// Get plugin meta
 	// -------------------------------------------------------------------------
 
-	const plugin = await sql`
+	let plugin = await sql`
 		select * from plugins where handle = '${handle}'
 	`;
 
@@ -79,6 +76,12 @@ app.get('/:handle', async (req, res) => {
 		});
 	}
 
+	plugin = plugin[0];
+	plugin.editionsByKey = plugin.editions.reduce((a, b) => {
+		a[b.handle] = b.name;
+		return a;
+	}, {});
+
 	// Get stats
 	// -------------------------------------------------------------------------
 
@@ -87,10 +90,11 @@ app.get('/:handle', async (req, res) => {
 	// Overall installs
 
 	const overall = await sql`
-		select count(1), edition from stats
+		select count(1), edition from public.stat_query(0)
 		where handle = '${handle}'
 		  and installed = true
-		group by key, edition
+		group by edition, created_at
+		order by created_at desc
 	`;
 
 	stats.overall = overall.reduce((a, b) => {
@@ -101,7 +105,7 @@ app.get('/:handle', async (req, res) => {
 
 	// Past month
 
-	stats.month = await sql`
+	const month = await sql`
 		select count(1), edition, created_at from public.stat_query(30)
 		where handle = '${handle}'
 		  and installed = true
@@ -109,13 +113,60 @@ app.get('/:handle', async (req, res) => {
 		order by created_at desc
 	`;
 
-	// TODO: Force length to be 30 days (even if those days are empty
+	const CHART_COLOURS = [
+		'#FFDD00',
+		'#FF0000',
+		'#008EFF',
+	];
+
+	const datasets = {};
+	let colourIndex = 0;
+
+	month.forEach(v => {
+		if (!datasets.hasOwnProperty(v.edition)) {
+			datasets[v.edition] = {
+				label: plugin.editionsByKey[v.edition],
+				borderColor: CHART_COLOURS[colourIndex++],
+				data: [],
+			};
+		}
+
+		datasets[v.edition].data.unshift(v.count);
+	});
+
+	const keys = Object.keys(datasets);
+	for (let i = 0, l = keys.length; i < l; i++) {
+		const l = datasets[keys[i]].data.length;
+		if (l < 30) {
+			datasets[keys[i]].data = [
+				...datasets[keys[i]].data.reverse(),
+				...Array.from({ length: 30 - l }, () => 0),
+			];
+		}
+		datasets[keys[i]].data.reverse();
+	}
+
+	const formatter = new Intl.DateTimeFormat(
+		'en-GB',
+		{ year: 'numeric', month: 'long', day: 'numeric' }
+	);
+
+	stats.month = {
+		labels: Array.from({ length: 30 }, (_, i) => {
+			const d = new Date();
+			d.setDate(d.getDate() - i);
+			return formatter.format(d);
+		}).reverse(),
+		datasets: Object.values(datasets),
+	};
+
+	// TODO: Force length to be 30 days (even if those days are empty)?
 
 	// Render
 	// -------------------------------------------------------------------------
 
 	res.status(200).render('_view.twig', {
-		plugin: plugin[0],
+		plugin,
 		stats,
 		...await globals(),
 	});

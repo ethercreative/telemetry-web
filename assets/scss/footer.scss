@@ -6,26 +6,14 @@
 	padding: 83px $spacer 140px;
 	overflow: hidden;
 
-	&:before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-
+	svg {
+		position: relative;
+		left: 50%;
 		width: 100vw;
-		height: 85px;
-
-		background-image: url(../svg/FooterDivider.svg);
-		background-repeat: repeat;
+		min-width: 500px;
+		transform: translateX(-50%);
+		margin-bottom: 50px;
 	}
-
-	//svg {
-	//	position: relative;
-	//	left: 50%;
-	//	width: 100vw;
-	//	min-width: 500px;
-	//	transform: translateX(-50%);
-	//}
 }
 
 .footer-container {

@@ -1,5 +1,5 @@
-{% set small = searchSmall if searchSmall is defined else false %}
-{% set value = searchValue if searchValue is defined else false %}
+{% set small = searchSmall ?: false %}
+{% set value = searchValue ?: false %}
 <div class="search-wrap" id="search">
 	<label class="search-label">
 		<svg width="17" height="18" viewBox="0 0 17 18">
@@ -8,7 +8,7 @@
 		<input
 			type="search"
 			placeholder="Search for a plugin..."
-			class="search-input{{ ' small' if small }}"
+			class="search-input{{ small ? ' small' }}"
 			{% if value %}value="{{ value }}"{% endif %}
 		/>
 	</label>

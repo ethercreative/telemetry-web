@@ -102,19 +102,13 @@ function ready () {
 		window.Chart.defaults.global.elements.line = {
 			...window.Chart.defaults.global.elements.line,
 			fill: false,
+			cubicInterpolationMode: 'monotone',
 		};
 
 		new window.Chart(ctx, {
 			type: 'line',
 
-			data: {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-				datasets: [{
-					label: 'My First dataset',
-					borderColor: '#ff6384',
-					data: [0, 10, 5, 2, 20, 30, 45],
-				}]
-			},
+			data: window.month,
 
 			options: {
 				legend: {
@@ -144,6 +138,7 @@ function ready () {
 					}],
 				},
 				tooltips: {
+					mode: 'index',
 					intersect: false,
 
 					xPadding: 20,

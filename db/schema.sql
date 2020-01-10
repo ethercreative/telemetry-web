@@ -44,4 +44,6 @@ create or replace function public.stat_query (
     select s.id, s.key, s.handle, s.version, s.edition, s.installed, s.enabled, s.license, s.issues, s.env, s.php, d::date as created_at
     from generate_series(date_from - days, date_from, '1 day'::interval) d
     left join public.stats as s on s.created_at <= d
+    left join public.stats as x on x.created_at = d and x.installed = false and x.key = s.key
+    where s.installed = true and x.id is null
 $$ language sql;

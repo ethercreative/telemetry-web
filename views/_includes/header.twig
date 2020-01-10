@@ -6,7 +6,7 @@
 		</a>
 
 		{% set searchSmall = true %}
-		{% set searchValue = plugin.handle if plugin else '' %}
+		{% set searchValue = plugin ? plugin.handle %}
 		{% include '_includes/search.twig' %}
 	</div>
 </header>

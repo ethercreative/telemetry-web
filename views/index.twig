@@ -10,6 +10,7 @@
 		{{ text }}
 	</a>
 {% endmacro %}
+{% import _self as _ %}
 
 {% block content %}
 
@@ -24,7 +25,7 @@
 					edition usage.</p>
 				{% include '_includes/search.twig' %}
 				<div class="index-pill">
-					Are you a plugin author? {{ docs('Add this to your plugin.') }}
+					Are you a plugin author? {{ _.docs('Add this to your plugin.') }}
 				</div>
 			</div>
 			<div>
@@ -192,7 +193,7 @@
 					anonymous we can’t see a reason why anyone would object to
 					the tracking. If you really don’t want to, there’s a config
 					setting that’ll opt you out.</p>
-				<p>Fancy giving it a whirl? {{ docs('Head over to the docs.') }}</p>
+				<p>Fancy giving it a whirl? {{ _.docs('Head over to the docs.') }}</p>
 			</div>
 		</div>
 	</section>

@@ -24,7 +24,7 @@
 				{% for edition in plugin.editions %}
 					<li>
 						<small>{{ edition.name }}</small>
-						<strong>{{ stats[edition.handle] or 'N/A' }}</strong>
+						<strong>{{ stats.overall[edition.handle] ?: 'N/A' }}</strong>
 					</li>
 				{% endfor %}
 			</ul>
@@ -36,10 +36,11 @@
 			<canvas id="month" width="1400px" height="400px"></canvas>
 		</div>
 	</section>
-
-	<pre><code>{{ stats|dump(2) }}</code></pre>
 {% endblock %}
 
 {% block endBody %}
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" async></script>
+	<script>
+		window.month = {{ stats.month|json_encode|raw }};
+	</script>
 {% endblock %}
