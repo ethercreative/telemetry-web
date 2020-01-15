@@ -25,7 +25,9 @@ function ready () {
 
 		let hasResults = false,
 			hasMouse = false,
-			hasFocus = false;
+			hasFocus = false,
+			userValue = '',
+			activeItem = null;
 
 		// TODO: Add arrow key support
 
@@ -35,7 +37,8 @@ function ready () {
 		};
 
 		const doSearch = e => {
-			const v = e.target.value.trim();
+			userValue = e.target.value;
+			const v = userValue.trim();
 
 			hasResults = false;
 
@@ -77,6 +80,36 @@ function ready () {
 		input.addEventListener('blur', () => {
 			hasFocus = false;
 			doOpen();
+		});
+		input.addEventListener('keydown', e => {
+			if (!hasFocus)
+				return;
+
+			if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown' && e.key !== 'Enter')
+				return;
+
+			e.preventDefault();
+
+			if (e.key === 'Enter') {
+				window.location.href = encodeURI(input.value);
+			} else if (hasResults) {
+				if (activeItem) {
+					activeItem.classList.remove('highlighted');
+
+					if (activeItem.nextElementSibling)
+						activeItem = activeItem.nextElementSibling;
+					else activeItem = null;
+				} else {
+					activeItem = search.querySelector('li:not(.hidden)');
+				}
+
+				if (activeItem) {
+					activeItem.classList.add('highlighted');
+					input.value = activeItem.dataset.handle;
+				} else {
+					input.value = userValue;
+				}
+			}
 		});
 	}
 

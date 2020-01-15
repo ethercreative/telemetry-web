@@ -160,8 +160,6 @@ app.get('/:handle', async (req, res) => {
 		datasets: Object.values(datasets),
 	};
 
-	// TODO: Force length to be 30 days (even if those days are empty)?
-
 	// Render
 	// -------------------------------------------------------------------------
 
