@@ -17,7 +17,7 @@
     "gatsby-plugin-react-helmet": "^3.1.15",
     "gatsby-plugin-sass": "^2.1.23",
     "gatsby-source-pg": "^0.1.4",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "react": "^16.11.0",
     "react-autosuggest": "^9.4.3",
     "react-dom": "^16.11.0",
